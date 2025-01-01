@@ -35,3 +35,5 @@
 3) Telefon Ve Bilgisayar İçin Uygundur.
 
 ```
+![Resim](https://github.com/user-attachments/assets/9966f53d-32bd-4771-978e-69f8c7ced447)
+

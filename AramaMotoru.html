@@ -1,0 +1,315 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Lweaxo Arama Motoru</title>
+
+    <style>
+        body {
+            font-family: 'Roboto', sans-serif;
+            background: linear-gradient(135deg, #6b73ff, #000dff);
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            height: 100%;
+            margin: 0;
+            color: #fff;
+        }
+
+        .search-container input {
+            margin: 10px 0;
+            padding: 12px;
+            width: 90%;
+            border: none;
+            border-radius: 8px;
+            font-size: 16px;
+            outline: none;
+        }
+
+        .search-container {
+            background: rgba(255, 255, 255, 0.1);
+            padding: 20px;
+            margin-top: 2%;
+            border-radius: 12px;
+            box-shadow: 0 8px 15px rgba(0, 0, 0, 0.2);
+            text-align: center;
+            width: 100%;
+            max-width: 450px;
+            backdrop-filter: blur(10px);
+        }
+
+        .search-container select,
+        .search-container button {
+            margin: 10px 0;
+            padding: 10px;
+            width: 100%;
+            border: none;
+            border-radius: 8px;
+            font-size: 16px;
+            outline: none;
+        }
+        
+        .search-container input {
+            background: rgba(255, 255, 255, 0.2);
+            color: #fff;
+        }
+
+        .search-container input::placeholder {
+            color: #ddd;
+        }
+
+        .search-container select {
+            background: rgba(255, 255, 255, 0.2);
+            color: #000;
+            cursor: pointer;
+        }
+
+        .search-container select option {
+            color: #000;
+        }
+
+        .search-container button {
+            background-color: #4caf50;
+            color: white;
+            font-weight: bold;
+            cursor: pointer;
+            transition: background-color 0.3s ease;
+        }
+
+        .search-container button:hover {
+            background-color: #45a049;
+        }
+
+        .advanced-options {
+            margin-top: 1px;
+            text-align: center;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            width: 100%;
+            max-width: 400px;
+        }
+
+        .advanced-options label {
+            font-size: 14px;
+        }
+
+        .advanced-options label input {
+            margin-right: 10px;
+        }
+
+        .visual-search {
+            margin-top: 10px;
+        }
+
+        .visual-search button {
+            margin: 5px 0;
+            background-color: #ff5722;
+            font-weight: bold;
+        }
+
+        .visual-search button:hover {
+            background-color: #e64a19;
+        }
+
+        .top-info {
+            position: absolute;
+            top: 20px;
+            right: 32px;
+            background-color: rgba(0, 0, 0, 0.5);
+            padding: 10px;
+            border-radius: 10px;
+            cursor: pointer;
+            transition: transform 0.3s ease;
+        }
+
+        .top-info:hover {
+            transform: scale(1.5); /* Hover efektiyle saati büyütme */
+        }
+
+        .top-info .time {
+            font-size: 18px;
+            color: white;
+            font-weight: bold;
+        }
+
+        /* Ekran boyutu küçüldüğünde top-info öğesini gizle */
+        @media (max-width: 820px) {
+            .top-info {
+                display: none;
+            }
+        }
+
+        /* Mobil ekranlar için düzenlemeler */
+        @media (max-width: 600px) {
+            .search-container {
+                padding: 15px;
+                max-width: 90%;
+            }
+
+            .search-container input, 
+            .search-container select, 
+            .search-container button {
+                font-size: 14px;
+            }
+
+            .advanced-options {
+                font-size: 12px;
+                flex-direction: column;
+            }
+
+            .visual-search button {
+                font-size: 14px;
+            }
+
+            .top-info {
+                top: 10px;
+                right: 20px;
+                font-size: 14px;
+            }
+        }
+
+    </style>
+</head>
+<body>
+
+<div class="search-container">
+    <input type="text" id="searchInput" placeholder="Aranacak kelimeyi yazın..." onkeypress="handleKeyPress(event)">
+    <select id="fileType" onkeypress="handleKeyPress(event)">
+        <option value="" selected disabled>Seçenek Seçiniz</option>
+        <option value="exe">.exe</option>
+        <option value="pdf">.pdf</option>
+        <option value="doc">.doc</option>
+        <option value="txt">.txt</option>
+        <option value="png">.png</option>
+        <option value="jpg">.jpg</option>
+        <option value="zip">.zip</option>
+        <option value="mp3">.mp3</option>
+        <option value="mp4">.mp4</option>
+    </select>
+    
+    <div class="advanced-options">
+        <label><input type="checkbox" id="onlyDownloadable"> Sadece indirilebilir dosyaları göster</label>
+        <label><input type="checkbox" id="safeSearch"> Güvenli arama etkin</label>
+    </div>
+    <button onclick="performSearch()">Ara</button>
+    <div class="visual-search">
+        <!-- Yandex Görsel Arama -->
+        <div>
+            <button onclick="performVisualSearch('yandexImages')">📸 Yandex Görseller'de Ara</button>
+            <button onclick="performVisualSearch('yandexSearch')">💬 Yandex'te Ara</button>
+        </div>
+        <!-- Google Görsel Arama -->
+        <div>
+            <button onclick="performVisualSearch('googleImages')">📸 Google Görsellerde Ara</button>
+            <button onclick="performVisualSearch('googleSearch')">💬 Google'da Ara</button>
+        </div>
+        <!-- DuckDuckGo Görsel ve Arama -->
+        <div>
+            <button onclick="performVisualSearch('duckduckgoImages')">📸 DuckDuckGo Görsellerde Ara</button>
+            <button onclick="performVisualSearch('duckduckgoSearch')">💬 DuckDuckGo'da Ara</button>
+        </div>
+        <!-- Ecosia Görsel ve Arama -->
+        <div>
+            <button onclick="performVisualSearch('ecosiaImages')">📸 Ecosia Görsellerde Ara</button>
+            <button onclick="performVisualSearch('ecosiaSearch')">💬 Ecosia'da Ara</button>
+        </div>
+    </div>
+</div>
+
+<div class="top-info">
+    <div id="currentTime" class="time" onclick="copyTime()">🕑 00:00:00</div>
+</div>
+
+<script>
+    function handleKeyPress(event) {
+        if (event.key === 'Enter') {
+            performSearch();
+        }
+    }
+
+    function performSearch() {
+        const searchInput = document.getElementById('searchInput').value.trim();
+        const fileType = document.getElementById('fileType').value;
+        const onlyDownloadable = document.getElementById('onlyDownloadable').checked;
+        const safeSearch = document.getElementById('safeSearch').checked;
+
+        if (!searchInput) {
+            alert('Lütfen aranacak kelimeyi yazın.');
+            return;
+        }
+
+        let query = `${searchInput}`;
+
+        const googleSearchUrl = `https://www.google.com/search?q=${encodeURIComponent(query)}`;
+
+        window.open(googleSearchUrl, '_blank');
+    }
+
+    function performVisualSearch(type) {
+        const searchInput = document.getElementById('searchInput').value.trim();
+        const fileType = document.getElementById('fileType').value;
+        const onlyDownloadable = document.getElementById('onlyDownloadable').checked;
+        const safeSearch = document.getElementById('safeSearch').checked;
+
+        if (!searchInput) {
+            alert('Lütfen aranacak kelimeyi yazın.');
+            return;
+        }
+
+        let query = `${searchInput}`;
+
+        // For non-image searches, include filetype, download, and safesearch options
+        if (type !== 'googleImages' && type !== 'yandexImages' && type !== 'duckduckgoImages' && type !== 'ecosiaImages') {
+            if (fileType) {
+                query += ` filetype:${fileType}`;
+            }
+
+            if (onlyDownloadable) {
+                query += ' download';
+            }
+
+            if (safeSearch) {
+                query += ' safesearch';
+            }
+        }
+
+        let searchUrl = '';
+        if (type === 'yandexImages') {
+            searchUrl = `https://yandex.com/images/search?text=${encodeURIComponent(searchInput)}`;
+        } else if (type === 'yandexSearch') {
+            searchUrl = `https://yandex.com/search/?text=${encodeURIComponent(query)}`;
+        } else if (type === 'googleImages') {
+            searchUrl = `https://www.google.com/search?tbm=isch&q=${encodeURIComponent(searchInput)}`;
+        } else if (type === 'googleSearch') {
+            searchUrl = `https://www.google.com/search?q=${encodeURIComponent(query)}`;
+        } else if (type === 'duckduckgoImages') {
+            searchUrl = `https://duckduckgo.com/?q=${encodeURIComponent(searchInput)}&t=h_&iax=images&ia=images`;
+        } else if (type === 'duckduckgoSearch') {
+            searchUrl = `https://duckduckgo.com/?q=${encodeURIComponent(query)}`;
+        } else if (type === 'ecosiaImages') {
+            searchUrl = `https://www.ecosia.org/images?q=${encodeURIComponent(searchInput)}`;
+        } else if (type === 'ecosiaSearch') {
+            searchUrl = `https://www.ecosia.org/search?q=${encodeURIComponent(query)}`;
+        }
+
+        window.open(searchUrl, '_blank');
+    }
+
+    // Update time every second
+    setInterval(function() {
+        const currentTime = new Date().toLocaleTimeString();
+        document.getElementById('currentTime').textContent = "🕑" + currentTime;
+    }, 1000);
+
+    function copyTime() {
+        const currentTime = document.getElementById('currentTime').textContent;
+        navigator.clipboard.writeText(currentTime).then(function() {
+            // alert('Saat kopyalandı: ' + currentTime);
+        });
+    }
+</script>
+</body>
+</html>

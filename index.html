@@ -1,0 +1,121 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Lweaxo Search | Tüm Arama Motorları</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div class="glass-container">
+        <div class="header">
+            <h1><i class="fas fa-search"></i> Lweaxo Search</h1>
+            <div class="time-display" onclick="copyTime()">
+                <span id="currentTime">00:00:00</span>
+                <i class="far fa-copy"></i>
+            </div>
+        </div>
+
+        <div class="search-box">
+            <div class="search-input">
+                <i class="fas fa-search"></i>
+                <input type="text" id="searchInput" placeholder="Ne aramak istersiniz?" onkeypress="handleKeyPress(event)">
+                <button id="voiceSearch">
+                    <i class="fas fa-microphone"></i></button>
+            </div>
+            
+            <div class="search-options">
+                <select id="searchType">
+                    <option value="web"><i class="fas fa-globe"></i> Web Arama</option>
+                    <option value="images"><i class="fas fa-image"></i> Görsel Arama</option>
+                    <option value="videos"><i class="fas fa-video"></i> Video Arama</option>
+                </select>
+                
+                <select id="fileType">
+                    <option value=""><i class="fas fa-filter"></i> Dosya Türü (Tümü)</option>
+                    <option value="pdf"><i class="fas fa-file-pdf"></i> PDF</option>
+                    <option value="doc"><i class="fas fa-file-word"></i> Word (.doc, .docx)</option>
+                    <option value="xls"><i class="fas fa-file-excel"></i> Excel (.xls, .xlsx)</option>
+                    <option value="ppt"><i class="fas fa-file-powerpoint"></i> PowerPoint (.ppt, .pptx)</option>
+                    <option value="jpg"><i class="fas fa-file-image"></i> Resim (.jpg, .png)</option>
+                    <option value="mp3"><i class="fas fa-file-audio"></i> Ses (.mp3, .wav)</option>
+                    <option value="mp4"><i class="fas fa-file-video"></i> Video (.mp4, .avi)</option>
+                    <option value="zip"><i class="fas fa-file-archive"></i> Sıkıştırılmış (.zip, .rar)</option>
+                </select>
+            </div>
+            
+            <div class="search-buttons">
+                <button class="primary-btn" onclick="performSearch()">
+                    <i class="fas fa-search"></i> Özel Ara
+                </button>
+            </div>
+        </div>
+        
+        <div class="search-section">
+            <h3><i class="fas fa-globe"></i> Web Arama Motorları</h3>
+            <div class="providers-grid">
+                <button class="provider-btn google" onclick="performSearchEngine('google')">
+                    <i class="fab fa-google"></i> Google
+                </button>
+                <button class="provider-btn yandex" onclick="performSearchEngine('yandex')">
+                    <i class="fab fa-yandex"></i> Yandex
+                </button>
+                <button class="provider-btn bing" onclick="performSearchEngine('bing')">
+                    <i class="fab fa-microsoft"></i> Bing
+                </button>
+                <button class="provider-btn duckduckgo" onclick="performSearchEngine('duckduckgo')">
+                    <i class="fas fa-search"></i> DuckDuckGo
+                </button>
+                <button class="provider-btn brave" onclick="performSearchEngine('brave')">
+                    <i class="fas fa-shield-alt"></i> Brave
+                </button>
+                <button class="provider-btn startpage" onclick="performSearchEngine('startpage')">
+                    <i class="fas fa-eye-slash"></i> Startpage
+                </button>
+                <button class="provider-btn lilo" onclick="performSearchEngine('lilo')">
+                    <i class="fas fa-leaf"></i> Lilo
+                </button>
+                <button class="provider-btn github" onclick="performSearchEngine('github')">
+                    <i class="fab fa-github"></i> GitHub
+                </button>
+            </div>
+        </div>
+        
+        <div class="search-section">
+            <h3><i class="fas fa-image"></i> Görsel Arama Motorları</h3>
+            <div class="providers-grid">
+                <button class="provider-btn google-images" onclick="performImageSearch('google')">
+                    <i class="fab fa-google"></i> Google Görseller
+                </button>
+                <button class="provider-btn yandex-images" onclick="performImageSearch('yandex')">
+                    <i class="fab fa-yandex"></i> Yandex Görseller
+                </button>
+                <button class="provider-btn bing-images" onclick="performImageSearch('bing')">
+                    <i class="fab fa-microsoft"></i> Bing Görseller
+                </button>
+                <button class="provider-btn pinterest" onclick="performImageSearch('pinterest')">
+                    <i class="fab fa-pinterest"></i> Pinterest
+                </button>
+            </div>
+        </div>
+        
+        <div class="search-section">
+            <h3><i class="fas fa-video"></i> Video Arama Motorları</h3>
+            <div class="providers-grid">
+                <button class="provider-btn youtube" onclick="performVideoSearch('youtube')">
+                    <i class="fab fa-youtube"></i> YouTube
+                </button>
+                <button class="provider-btn twitch" onclick="performVideoSearch('twitch')">
+                    <i class="fab fa-twitch"></i> Twitch
+                </button>
+<button class="provider-btn kick" onclick="performVideoSearch('kick')">
+    <i class="fas fa-tv"></i> Kick
+</button>
+            </div>
+        </div>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>

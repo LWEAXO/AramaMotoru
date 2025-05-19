@@ -26,7 +26,7 @@ body {
     min-height: 100vh;
     display: flex;
     flex-direction: column;
-    align-items: center;
+    align-items: center;/* https://github.com/LWEAXO */
     justify-content: center;
     color: var(--light-color);
     padding: 20px;
@@ -88,7 +88,7 @@ body {
     margin-bottom: 30px;
 }
 
-.search-input {
+.search-input {/* https://github.com/LWEAXO */
     position: relative;
     display: flex;
     align-items: center;
@@ -98,7 +98,7 @@ body {
     position: absolute;
     left: 20px;
     color: var(--light-color);
-    opacity: 0.8;
+    opacity: 0.8;/* https://github.com/LWEAXO */
     font-size: 1.2rem;
 }
 
@@ -121,7 +121,7 @@ body {
 
 .search-input input:focus {
     background: rgba(255, 255, 255, 0.3);
-    box-shadow: 0 0 0 2px rgba(255, 255, 255, 0.3);
+    box-shadow: 0 0 0 2px rgba(255, 255, 255, 0.3);/* https://github.com/LWEAXO */
 }
 
 .provider-btn.kick {
@@ -291,7 +291,7 @@ body {
     box-shadow: 0 6px 12px rgba(0, 0, 0, 0.15);
 }
 
-.provider-btn i {
+.provider-btn i { /* https://github.com/LWEAXO */
     font-size: 1.2rem;
 }
 
@@ -358,7 +358,7 @@ body {
     }
     
     .search-options {
-        grid-template-columns: 1fr;
+        grid-template-columns: 1fr;/* https://github.com/LWEAXO */
     }
     
     .providers-grid {
@@ -372,7 +372,7 @@ body {
     .search-input input {
         padding: 12px 15px 12px 45px;
         font-size: 0.9rem;
-    }
+    }/* https://github.com/LWEAXO */
     
     .search-input i {
         left: 15px;
@@ -402,6 +402,7 @@ body {
     
     .time-display {
         margin-top: 10px;
+        margin-right: 0px;
     }
     
     .search-section h3 {
@@ -443,3 +444,21 @@ body {
         font-size: 1.1rem;
     }
 }
+
+.provider-btn.wikipedia { background: #636466; }
+
+.provider-btn.hepsiburada { background: #00aeef; }
+.provider-btn.trendyol { background: #f26b38; }
+.provider-btn.n11 { background: #6d2077; }
+.provider-btn.amazon { background: #FF9900; color: #000; }
+.provider-btn.gittigidiyor { background: #ff7800; }
+.provider-btn.ciceksepeti { background: #ff3265; }
+.provider-btn.morhipo { background: #8e44ad; }
+.provider-btn.ebay { background: #0064D2; }/* https://github.com/LWEAXO */
+
+.provider-btn:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 6px 12px rgba(0, 0, 0, 0.15);
+    filter: brightness(1.1);
+}
+

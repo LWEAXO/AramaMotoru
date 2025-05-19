@@ -1,7 +1,7 @@
 # 📜 Lweaxo Search - Çoklu Arama Motoru
 
 <p align="center">
-  <img src="./img/anamenu.png" alt="Cmd arayüzü" />
+  <img src="./img/image.png" alt="Cmd arayüzü" />
 </p>
 
 **Lweaxo Search**, kullanıcıların tek bir arayüzden farklı arama motorlarını kullanabilmesini sağlayan modern ve şık bir web uygulamasıdır. Google, Yandex, Bing, YouTube, Twitch ve daha fazlasına tek yerden erişim sunar.

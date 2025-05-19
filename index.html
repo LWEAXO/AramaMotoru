@@ -6,8 +6,11 @@
     <title>Lweaxo Search | Tüm Arama Motorları</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <link rel="stylesheet" href="style.css">
+    <script src="https://www.gstatic.com/firebasejs/8.10.0/firebase-app.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/8.10.0/firebase-database.js"></script>
 </head>
 <body>
+    
     <div class="glass-container">
         <div class="header">
             <h1><i class="fas fa-search"></i> Lweaxo Search</h1>
@@ -30,6 +33,7 @@
                     <option value="web"><i class="fas fa-globe"></i> Web Arama</option>
                     <option value="images"><i class="fas fa-image"></i> Görsel Arama</option>
                     <option value="videos"><i class="fas fa-video"></i> Video Arama</option>
+                    <option value="shopping"><i class="fas fa-shopping-cart"></i> Alışveriş</option>
                 </select>
                 
                 <select id="fileType">
@@ -79,6 +83,39 @@
                 <button class="provider-btn github" onclick="performSearchEngine('github')">
                     <i class="fab fa-github"></i> GitHub
                 </button>
+                <button class="provider-btn wikipedia" onclick="performSearchEngine('wikipedia')">
+                    <i class="fab fa-wikipedia-w"></i> Wikipedia
+                </button>
+            </div>
+        </div>
+        
+        <div class="search-section">
+            <h3><i class="fas fa-shopping-cart"></i> Alışveriş Siteleri</h3>
+            <div class="providers-grid">
+                <button class="provider-btn hepsiburada" onclick="performShoppingSearch('hepsiburada')">
+                    <i class="fas fa-shopping-basket"></i> Hepsiburada
+                </button>
+                <button class="provider-btn trendyol" onclick="performShoppingSearch('trendyol')">
+                    <i class="fas fa-tshirt"></i> Trendyol
+                </button>
+                <button class="provider-btn n11" onclick="performShoppingSearch('n11')">
+                    <i class="fas fa-store"></i> n11
+                </button>
+                <button class="provider-btn amazon" onclick="performShoppingSearch('amazon')">
+                    <i class="fab fa-amazon"></i> Amazon
+                </button>
+                <!-- <button class="provider-btn gittigidiyor" onclick="performShoppingSearch('gittigidiyor')">
+                    <i class="fas fa-truck"></i> GittiGidiyor
+                </button> -->
+                <button class="provider-btn ciceksepeti" onclick="performShoppingSearch('ciceksepeti')">
+                    <i class="fas fa-spa"></i> ÇiçekSepeti
+                </button>
+                <!-- <button class="provider-btn morhipo" onclick="performShoppingSearch('morhipo')">
+                    <i class="fas fa-crown"></i> Morhipo
+                </button>
+                <button class="provider-btn ebay" onclick="performShoppingSearch('ebay')">
+                    <i class="fab fa-ebay"></i> eBay
+                </button> -->
             </div>
         </div>
         
@@ -109,13 +146,15 @@
                 <button class="provider-btn twitch" onclick="performVideoSearch('twitch')">
                     <i class="fab fa-twitch"></i> Twitch
                 </button>
-<button class="provider-btn kick" onclick="performVideoSearch('kick')">
-    <i class="fas fa-tv"></i> Kick
-</button>
+                <button class="provider-btn kick" onclick="performVideoSearch('kick')">
+                    <i class="fas fa-tv"></i> Kick
+                </button>
             </div>
         </div>
     </div>
 
+    <!-- https://github.com/LWEAXO -->
     <script src="script.js"></script>
+
 </body>
 </html>

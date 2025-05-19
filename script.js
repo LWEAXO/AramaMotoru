@@ -2,7 +2,7 @@ const searchInput = document.getElementById('searchInput');
 const searchType = document.getElementById('searchType');
 const fileType = document.getElementById('fileType');
 const voiceSearchBtn = document.getElementById('voiceSearch');
-
+// https://github.com/LWEAXO
 if ('webkitSpeechRecognition' in window) {
     const recognition = new webkitSpeechRecognition();
     recognition.continuous = false;
@@ -63,13 +63,16 @@ function performSearch() {
         case 'images':
             performImageSearch('google', searchQuery);
             break;
-        case 'videos':
+        case 'videos':// https://github.com/LWEAXO
             performVideoSearch('youtube', searchQuery);
+            break;
+        case 'shopping':
+            performShoppingSearch('hepsiburada', searchQuery);
             break;
         default:
             performSearchEngine('google', searchQuery);
     }
-}
+}// https://github.com/LWEAXO
 
 function performSearchEngine(engine, query = '') {
     if (!query) query = searchInput.value.trim();
@@ -100,11 +103,14 @@ function performSearchEngine(engine, query = '') {
         case 'startpage':
             searchUrl = `https://www.startpage.com/do/search?query=${encodedQuery}`;
             break;
-        case 'lilo':
+        case 'lilo':// https://github.com/LWEAXO
             searchUrl = `https://search.lilo.org/searchweb.php?q=${encodedQuery}`;
             break;
         case 'github':
             searchUrl = `https://github.com/search?q=${encodedQuery}`;
+            break;
+        case 'wikipedia':
+            searchUrl = `https://tr.wikipedia.org/w/index.php?search=${encodedQuery}`;
             break;
         default:
             searchUrl = `https://www.google.com/search?q=${encodedQuery}`;
@@ -142,7 +148,7 @@ function performImageSearch(engine, query = '') {
     
     window.open(searchUrl, '_blank');
 }
-
+// https://github.com/LWEAXO
 function performVideoSearch(engine, query = '') {
     if (!query) query = searchInput.value.trim();
     if (!query) {
@@ -152,7 +158,7 @@ function performVideoSearch(engine, query = '') {
 
     const encodedQuery = encodeURIComponent(query);
     let searchUrl = '';
-    
+    // https://github.com/LWEAXO
     switch(engine) {
         case 'youtube':
             searchUrl = `https://www.youtube.com/results?search_query=${encodedQuery}`;
@@ -165,6 +171,48 @@ function performVideoSearch(engine, query = '') {
             break;
         default:
             searchUrl = `https://www.youtube.com/results?search_query=${encodedQuery}`;
+    }
+    
+    window.open(searchUrl, '_blank');
+}
+
+function performShoppingSearch(engine, query = '') {
+    if (!query) query = searchInput.value.trim();
+    if (!query) {
+        showAlert('⚠️ Lütfen arama terimi giriniz', 'error');
+        return;
+    }
+
+    const encodedQuery = encodeURIComponent(query);
+    let searchUrl = '';
+    
+    switch(engine) {
+        case 'hepsiburada':
+            searchUrl = `https://www.hepsiburada.com/ara?q=${encodedQuery}`;
+            break;
+        case 'trendyol':
+            searchUrl = `https://www.trendyol.com/sr?q=${encodedQuery}`;
+            break;
+        case 'n11':
+            searchUrl = `https://www.n11.com/arama?q=${encodedQuery}`;
+            break;
+        case 'amazon':
+            searchUrl = `https://www.amazon.com.tr/s?k=${encodedQuery}`;
+            break;
+        // case 'gittigidiyor':
+        //     searchUrl = `https://www.gittigidiyor.com/arama/?k=${encodedQuery}`;
+        //     break;
+        case 'ciceksepeti':
+            searchUrl = `https://www.ciceksepeti.com/arama?query=${encodedQuery}`;
+            break;
+        // case 'morhipo':
+        //     searchUrl = `https://www.morhipo.com/arama/${encodedQuery}`;
+        //     break;
+        // case 'ebay':
+        //     searchUrl = `https://www.ebay.com/sch/i.html?_nkw=${encodedQuery}`;
+        //     break;
+        default:
+            searchUrl = `https://www.hepsiburada.com/ara?q=${encodedQuery}`;
     }
     
     window.open(searchUrl, '_blank');
@@ -200,7 +248,7 @@ function showAlert(message, type) {
             alert.remove();
         }, 300);
     }, 3000);
-}
+}// https://github.com/LWEAXO
 
 setInterval(updateClock, 1000);
 updateClock();
@@ -246,6 +294,6 @@ function detectDevice() {
     } else {
         body.classList.add('desktop-device');
     }
-}
+}// https://github.com/LWEAXO
 
 window.addEventListener('load', detectDevice);
